@@ -1,0 +1,56 @@
+{
+  "name": "brow-chatgpt-browser",
+  "version": "1.0.0",
+  "description": "A dedicated browser application optimized for maximum performance with ChatGPT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --enable-logging",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux"
+  },
+  "keywords": [
+    "chatgpt",
+    "browser",
+    "electron",
+    "performance"
+  ],
+  "author": "blazebbq",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^35.7.5",
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.blazebbq.brow",
+    "productName": "Brow",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "optimization.js",
+      "worker-pool.js",
+      "worker.js",
+      "diagnostics-longtask.js",
+      "diagnostics-hud.js",
+      "styles.css",
+      "index.html"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": ["dmg", "zip"]
+    },
+    "win": {
+      "target": ["nsis", "portable"]
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Network"
+    }
+  }
+}
