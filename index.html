@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; webview-src https://chat.openai.com https://*.openai.com;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; webview-src https://chat.openai.com https://*.openai.com; worker-src 'self' blob:;">
     <title>Brow - ChatGPT Browser</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -25,7 +25,12 @@
             style="width: 100%; height: 100%; display: flex;"
         ></webview>
     </div>
+    <!-- Core scripts -->
+    <script src="worker-pool.js"></script>
     <script src="renderer.js"></script>
     <script src="optimization.js"></script>
+    <!-- Diagnostic tools -->
+    <script src="diagnostics-longtask.js"></script>
+    <script src="diagnostics-hud.js"></script>
 </body>
 </html>

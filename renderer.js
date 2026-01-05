@@ -4,6 +4,15 @@ console.log('[Brow Renderer] Initializing...');
 const webview = document.getElementById('chatgpt-webview');
 const loadingScreen = document.getElementById('loading-screen');
 
+// Initialize Worker Pool for offloading heavy operations
+let workerPool = null;
+try {
+    workerPool = new WorkerPool('worker.js');
+    console.log('[Brow Renderer] Worker pool initialized');
+} catch (err) {
+    console.warn('[Brow Renderer] Worker pool initialization failed:', err);
+}
+
 // Check if webview is properly initialized
 if (!webview) {
     console.error('[Brow] Error: webview element not found!');

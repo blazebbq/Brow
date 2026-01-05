@@ -34,6 +34,10 @@
       "preload.js",
       "renderer.js",
       "optimization.js",
+      "worker-pool.js",
+      "worker.js",
+      "diagnostics-longtask.js",
+      "diagnostics-hud.js",
       "styles.css",
       "index.html"
     ],
