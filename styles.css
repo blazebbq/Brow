@@ -75,10 +75,7 @@ html, body {
     height: 100%;
     border: none;
     display: block;
-}
-
-/* Performance optimization: Use GPU acceleration */
-#chatgpt-webview {
+    /* Performance optimization: Use GPU acceleration */
     transform: translateZ(0);
     -webkit-transform: translateZ(0);
     will-change: transform;

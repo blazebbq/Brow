@@ -114,15 +114,8 @@ app.on('activate', () => {
 app.whenReady().then(() => {
   createWindow();
 
-  // Apply session-wide optimizations
-  session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
-    callback({
-      responseHeaders: {
-        ...details.responseHeaders,
-        'Content-Security-Policy': ['default-src * \'unsafe-inline\' \'unsafe-eval\'; script-src * \'unsafe-inline\' \'unsafe-eval\'; connect-src * \'unsafe-inline\'; img-src * data: blob: \'unsafe-inline\'; frame-src *; style-src * \'unsafe-inline\';']
-      }
-    });
-  });
+  // Note: We allow ChatGPT to manage its own security headers
+  // The webview is sandboxed for security
 });
 
 // Handle uncaught exceptions

@@ -74,33 +74,42 @@ function injectOptimizations() {
             
             // Memory management - remove old messages from DOM when list gets too long
             function manageMessageMemory() {
-                const messages = document.querySelectorAll('[data-testid^="conversation-turn-"]');
-                if (messages.length > 50) {
-                    // Keep first 5 and last 40 messages visible, hide middle ones
-                    for (let i = 5; i < messages.length - 40; i++) {
-                        if (messages[i] && !messages[i].hasAttribute('data-brow-hidden')) {
-                            const rect = messages[i].getBoundingClientRect();
-                            // Only hide if off-screen
-                            if (rect.bottom < 0 || rect.top > window.innerHeight) {
-                                messages[i].style.display = 'none';
-                                messages[i].setAttribute('data-brow-hidden', 'true');
+                try {
+                    // Try multiple selectors for robustness
+                    const messages = document.querySelectorAll('[data-testid^="conversation-turn-"], .group, article');
+                    if (messages.length > 50) {
+                        // Keep first 5 and last 40 messages visible, hide middle ones
+                        for (let i = 5; i < messages.length - 40; i++) {
+                            if (messages[i] && !messages[i].hasAttribute('data-brow-hidden')) {
+                                const rect = messages[i].getBoundingClientRect();
+                                // Only hide if off-screen
+                                if (rect.bottom < 0 || rect.top > window.innerHeight) {
+                                    messages[i].style.display = 'none';
+                                    messages[i].setAttribute('data-brow-hidden', 'true');
+                                }
                             }
                         }
                     }
+                } catch (e) {
+                    console.warn('[Brow] Error in manageMessageMemory:', e);
                 }
             }
             
             // Restore hidden messages when scrolling near them
             function restoreMessages() {
-                const hiddenMessages = document.querySelectorAll('[data-brow-hidden="true"]');
-                hiddenMessages.forEach(msg => {
-                    const rect = msg.getBoundingClientRect();
-                    const bufferZone = 1000; // pixels
-                    if (rect.top < window.innerHeight + bufferZone && rect.bottom > -bufferZone) {
-                        msg.style.display = '';
-                        msg.removeAttribute('data-brow-hidden');
-                    }
-                });
+                try {
+                    const hiddenMessages = document.querySelectorAll('[data-brow-hidden="true"]');
+                    hiddenMessages.forEach(msg => {
+                        const rect = msg.getBoundingClientRect();
+                        const bufferZone = 1000; // pixels
+                        if (rect.top < window.innerHeight + bufferZone && rect.bottom > -bufferZone) {
+                            msg.style.display = '';
+                            msg.removeAttribute('data-brow-hidden');
+                        }
+                    });
+                } catch (e) {
+                    console.warn('[Brow] Error in restoreMessages:', e);
+                }
             }
             
             // Throttled scroll handler
@@ -131,12 +140,9 @@ function injectOptimizations() {
             }, 1000);
             
             // Disable auto-scroll to bottom on new messages (reduces reflow)
+            const cssText = '* { scroll-behavior: auto !important; }';
             const style = document.createElement('style');
-            style.textContent = \`
-                * {
-                    scroll-behavior: auto !important;
-                }
-            \`;
+            style.textContent = cssText;
             document.head.appendChild(style);
             
             console.log('[Brow Optimization] Enhancements applied successfully');
