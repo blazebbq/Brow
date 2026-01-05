@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src *; img-src * data: blob:; style-src * 'unsafe-inline';">
+    <title>Brow - ChatGPT Browser</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <h1>Brow</h1>
+            <p>Optimized ChatGPT Browser</p>
+            <div class="spinner"></div>
+        </div>
+    </div>
+    <div id="browser-container">
+        <webview 
+            id="chatgpt-webview" 
+            src="https://chat.openai.com"
+            partition="persist:chatgpt"
+            allowpopups
+            webpreferences="contextIsolation=yes, sandbox=yes, javascript=yes"
+        ></webview>
+    </div>
+    <script src="renderer.js"></script>
+    <script src="optimization.js"></script>
+</body>
+</html>
