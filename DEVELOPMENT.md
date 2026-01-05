@@ -25,6 +25,7 @@ Main Electron process that:
 - Creates the browser window
 - Manages window lifecycle
 - Handles session optimizations
+- **Important**: Enables webviewTag support (requires sandbox: false)
 
 ### preload.js
 Security bridge that:

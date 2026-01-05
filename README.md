@@ -118,6 +118,23 @@ npm run dev
 3. **Multiple Chats**: Open new chats to reset memory if needed
 4. **Updates**: Keep Brow updated for the latest optimizations
 
+## Troubleshooting
+
+### Application loads forever / blank screen
+- The webview requires `webviewTag: true` in the Electron configuration (already included)
+- Check your internet connection
+- Look for errors in the console (run with `npm run dev` to see logs)
+- Try clearing application data and restarting
+
+### Console shows security warnings
+- The "allowpopups" warning is expected and safe (allows ChatGPT dialogs to work)
+- Sandbox is disabled for webview support - this is required for the webview tag
+
+### High memory usage
+- This is normal for long conversations (200-500MB)
+- Virtual scrolling activates automatically at 50+ messages
+- Restart the app if memory exceeds 1GB
+
 ## License
 
 MIT License - See LICENSE file for details
