@@ -4,6 +4,13 @@ console.log('[Brow Renderer] Initializing...');
 const webview = document.getElementById('chatgpt-webview');
 const loadingScreen = document.getElementById('loading-screen');
 
+// Check if webview is properly initialized
+if (!webview) {
+    console.error('[Brow] Error: webview element not found!');
+} else {
+    console.log('[Brow] Webview element found, setting up event listeners...');
+}
+
 // Handle webview load events
 webview.addEventListener('did-start-loading', () => {
     console.log('[Brow] ChatGPT loading...');

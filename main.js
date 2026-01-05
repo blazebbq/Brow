@@ -26,8 +26,9 @@ function createWindow() {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true,
       nodeIntegration: false,
-      sandbox: true,
+      sandbox: false, // Must disable sandbox for webview tag
       webSecurity: true,
+      webviewTag: true, // Enable webview tag support
       // Performance optimizations
       enablePreferredSizeMode: true,
       backgroundThrottling: false,
