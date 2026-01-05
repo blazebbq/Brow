@@ -82,8 +82,19 @@ function createWindow() {
   // Prevent new window creation (keep user in single window)
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     // Allow ChatGPT-related URLs to open in the same window
-    if (url.includes('openai.com') || url.includes('chatgpt.com')) {
-      mainWindow.loadURL(url);
+    // Use proper URL parsing to validate the hostname
+    try {
+      const parsedUrl = new URL(url);
+      const hostname = parsedUrl.hostname.toLowerCase();
+      // Only allow exact OpenAI domains and subdomains
+      if (hostname === 'chat.openai.com' || 
+          hostname === 'chatgpt.com' ||
+          hostname.endsWith('.openai.com') || 
+          hostname.endsWith('.chatgpt.com')) {
+        mainWindow.loadURL(url);
+      }
+    } catch (e) {
+      console.error('[Brow] Invalid URL:', url, e);
     }
     return { action: 'deny' };
   });
