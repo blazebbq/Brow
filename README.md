@@ -10,6 +10,8 @@ A dedicated desktop browser application specifically optimized for maximum perfo
 - **Hardware Acceleration**: GPU-accelerated rendering for smooth scrolling and animations
 - **Lazy Loading**: Images and content load on-demand to reduce memory footprint
 - **Optimized JavaScript Execution**: Enhanced V8 engine settings for better performance
+- **Web Worker Pool**: Offloads CPU-intensive operations to background threads to prevent UI freezing
+- **Performance Monitoring**: Real-time FPS and memory usage display with long-task detection
 
 ### ⚡ Lightweight & Fast
 - Minimal browser focused only on ChatGPT functionality
@@ -90,6 +92,20 @@ When conversations exceed 50 messages, Brow automatically:
 - Zero-copy video decoding
 - Optimized rasterization
 - Smooth animations and transitions
+
+### Web Worker Pool
+- Offloads heavy operations (JSON parsing, array processing) to background threads
+- Prevents UI freezing during CPU-intensive tasks
+- Automatically scales based on available CPU cores
+- Self-healing: automatically recovers from worker failures
+
+### Performance Diagnostics
+- **Long-Task Monitor**: Detects and logs operations that block the main thread for >50ms
+- **Performance HUD**: Real-time overlay showing:
+  - FPS (frames per second) - color-coded for performance
+  - Memory usage (current / total / percentage)
+  - Located in bottom-right corner
+- **Console Logging**: Detailed performance metrics in developer console
 
 ## Technical Stack
 

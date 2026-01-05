@@ -36,6 +36,32 @@
 - [x] Efficient scroll event handling (passive listeners)
 - [x] Debounced memory management (500ms)
 - [x] Periodic optimization runs (every 5 seconds)
+- [x] Web Worker pool for offloading heavy operations
+- [x] Background thread processing for CPU-intensive tasks
+
+## Performance Diagnostics ✅
+
+### Long-Task Monitoring
+- [x] Detects operations blocking main thread >50ms
+- [x] Console logging of long tasks with duration
+- [x] Fallback monitoring via setTimeout wrapper
+- [x] Attribution data for debugging
+
+### Performance HUD
+- [x] Real-time FPS display (color-coded)
+- [x] Memory usage monitoring (used/total/percentage)
+- [x] Non-intrusive overlay (bottom-right)
+- [x] Updates every 500ms
+- [x] Monospace font for readability
+
+### Web Worker Pool
+- [x] Configurable worker pool based on CPU cores
+- [x] Automatic task queuing
+- [x] Worker failure recovery
+- [x] Support for JSON parsing/stringifying
+- [x] Array operations (sort, filter, map)
+- [x] Text processing operations
+- [x] Data compression/decompression
 
 ## Technical Implementation ✅
 
